@@ -18,4 +18,20 @@ var constraints = {
 };
 /* Stream it to video element */
 camera();
-
+function camera() {
+    if (!cameraAvailable) {
+        console.log("camera")
+        navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
+            cameraAvailable = true;
+            video.srcObject = stream;
+        }).catch(function (err) {
+            cameraAvailable = false;
+            if (modelIsLoaded) {
+                if (err.name === "NotAllowedError") {
+                    document.getElementById("loadingText").innerText = "Waiting for camera permission";
+                }
+            }
+            setTimeout(camera, 1000);
+        });
+    }
+}
