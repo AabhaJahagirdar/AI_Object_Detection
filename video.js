@@ -35,3 +35,17 @@ function camera() {
         });
     }
 }
+window.onload = function () {
+    timerCallback();
+}
+
+function timerCallback() {
+    if (isReady()) {
+        setResolution();
+        ctx1.drawImage(video, 0, 0, c1.width, c1.height);
+        if (aiEnabled) {
+            ai();
+        }
+    }
+    setTimeout(timerCallback, fps);
+}
