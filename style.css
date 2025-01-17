@@ -13,4 +13,7 @@ table {
 }
 
 tr,
-
+td {
+    border: 0px;
+    text-align: center;
+}
